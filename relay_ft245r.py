@@ -84,11 +84,14 @@ class FT245R:
         self.relay_state = 0                # 8 bits representing 8 relays
 
 
-    def list_dev(self):
+    def list_dev(self, product_str=None):
         """
         Returns the list of FT245R devices.
         @return: device list
         """
+        if product_str is not None:
+            self.PROD_STR = product_str
+
         ret = []
         for dev in usb.core.find(find_all=True,
                                  idVendor=self.VID,
